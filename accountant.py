@@ -88,6 +88,3 @@ elif operation == "przegląd":
 
 else:
     print("Error, allowed operations are: zakup, sprzedaż, saldo, konto, przegląd and magazyn")
-
-print(magazine)
-print(saldo)
