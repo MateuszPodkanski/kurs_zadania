@@ -107,50 +107,51 @@ def id_type(operation):
         
 operation_type=id_type(operation)
 
-if operation_type == "group":
+def results ():
+    if operation_type == "group":
         for student in students:
             if operation == student.group:
                 print(f"{student.name}")
-        for s_teacher in teachers:
-            if operation == s_teacher.group:
-                print(f"{s_teacher.name}")
+        for s_teacher in s_teachers:
+            for group in s_teacher.groups:
+                if operation == group:
+                    print(f"{s_teacher.name}")
 
 
-elif operation_type == "s_teacher":
-    for s_teacher in s_teachers:
-        if operation == s_teacher.name:
-            groups = s_teacher.groups
-            for group in groups:
-                for student in students:
-                    if student.group == group:
-                        print(f"{student.name}")
+    elif operation_type == "s_teacher":
+        for s_teacher in s_teachers:
+            if operation == s_teacher.name:
+                groups = s_teacher.groups
+                for group in groups:
+                    for student in students:
+                        if student.group == group:
+                            print(f"{student.name}")
 
-elif operation_type == "teacher":
-    for teacher in teachers:
-        if operation == teacher.name:
-            t_groups = teacher.groups
-            for t_group in t_groups:
-                for s_teacher in s_teachers:
-                    s_groups = s_teacher.groups
-                    for s_group in s_groups:
-                        if s_group == t_group:
-                            print(f"{s_teacher.name}")
-
-
-elif operation_type == "student":
-    for student in students:
-        if operation == student.name:
-            for teacher in teachers:
-                for group in teacher.groups:
-                    if group == student.group:
-                        print(f"{teacher.subject}")
-                        print(f"{teacher.name}")
-
-else:
-    print("Wrong operation - person/group not found!")
+    elif operation_type == "teacher":
+        for teacher in teachers:
+            if operation == teacher.name:
+                t_groups = teacher.groups
+                for t_group in t_groups:
+                    for s_teacher in s_teachers:
+                        s_groups = s_teacher.groups
+                        for s_group in s_groups:
+                            if s_group == t_group:
+                                print(f"{s_teacher.name}")
 
 
+    elif operation_type == "student":
+        for student in students:
+            if operation == student.name:
+                for teacher in teachers:
+                    for group in teacher.groups:
+                        if group == student.group:
+                            print(f"{teacher.subject}")
+                            print(f"{teacher.name}")
 
+    else:
+        print("Wrong operation - person/group not found!")
+
+results()
 
 
 
