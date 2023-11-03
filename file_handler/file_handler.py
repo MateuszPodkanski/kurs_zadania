@@ -38,8 +38,9 @@ class FileHandler:
 
     @staticmethod
     def combine_arguments():
-        sys.argv[0]=os.path.splitext(sys.argv[0])[0]
-        combined_arguments = " ".join(sys.argv[0:])
+        file_name=os.path.splitext(sys.argv[0])[0]
+        combined_arguments = " ".join(sys.argv[1:])
+        combined_arguments = f"{file_name} {combined_arguments}"
         return combined_arguments
 
     def change_magazine(self):
@@ -62,20 +63,22 @@ class FileHandler:
                 if item.get("name") == item_name:
                     magazine_amount = int(item.get("amount"))
                     item["amount"] = str(magazine_amount + item_amount)
+                else:
+                    self.change_saldo(full_price)
 
 
         if operation_name == "sprzedaż":
-            self.change_saldo(full_price)
             for item in self.magazine:
                 if item.get("name") == item_name:
                     magazine_amount = int(item.get("amount"))
                     item["amount"] = str(magazine_amount - item_amount)
                     if int(item.get("amount")) < 0:
-                        item["amount"] = str(magazine_amount + item_amount)
+                        item["amount"] = str(magazine_amount)
                         print("Not enough products in the magazine!")
                         sys.exit
+                    else:
+                        self.change_saldo(full_price)
             
-
 
     def add_history(self, new_history):
         self.history.append(new_history)
