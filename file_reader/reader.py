@@ -38,7 +38,6 @@ class File_Reader:
         with open(self.end_location, 'w') as f:
             for line in self.beginning:
                 f.write(';'.join(line) + '\n')
-                break
 
 def program_start():
     while True:
