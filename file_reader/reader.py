@@ -2,6 +2,7 @@ import sys
 import csv
 import os
 
+# mój csv file przyjął jako separatory ; co wygląda na to że utrudniło mi pracę, musiałem użyć innej funckji do zapisu
 
 class File_Reader:
 
@@ -41,10 +42,10 @@ class File_Reader:
 
 def program_start():
     while True:
-        if os.path.exists(sys.argv[1]) :
+        if os.path.isfile(sys.argv[1]) :
             reader = File_Reader(beginning_file = sys.argv[1],end_location = sys.argv[2],changes = sys.argv[3:])
             break
         else:
-            sys.argv[1] = input("This path does not exist,please enter correct path: \n")
+            sys.argv[1] = input("This path does not exist,please enter correct file: \n")
 
 program_start()
