@@ -25,9 +25,11 @@ def find_in_file():
                     print (f"Dnia {user_date} w {user_city} {verdict}")
                     return  True
                 
-            return False
+                else:
+                    return False
         
-    return False
+        else:
+            return False
 
 def find_latitude_and_longitude(city):
     geolocator = Nominatim(user_agent="weather_forecast")
