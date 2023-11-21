@@ -8,10 +8,11 @@ def get_tomorrow_date(user_date):
         user_date = datetime.now().date()
         user_date = user_date + timedelta(days=1)
         user_date = user_date.strftime("%Y-%m-%d")
-        return user_date
+    return user_date
+
 def read_file():
     try:
-        with open("C:/Python/kurs/zadania/weather_forecast/results.json") as file:
+        with open("weather_forecast_1/results.json") as file:
             data = json.loads(file.read())
             return data
     except FileNotFoundError:
@@ -72,7 +73,8 @@ def set_in_file():
 
              
 def write_file():
-        with open ("C:/Python/kurs/zadania/weather_forecast/results.json",mode = "w") as file:
+        with open ("weather_forecast_1/results.json",mode = "w") as file:
+            print(data)
             file.write(json.dumps(data))
 
 
