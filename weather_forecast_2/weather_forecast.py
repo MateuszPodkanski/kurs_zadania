@@ -31,6 +31,7 @@ class WeatherForecast:
                 return self.data
         except FileNotFoundError:
             print("Plik 'results.json' nie znaleziony.")
+            return {}
     
 
     @staticmethod
@@ -69,10 +70,7 @@ class WeatherForecast:
                   if searched_date == date:
                       print (f"Dnia {searched_date} w {searched_city} {verdict}")
                       return True
-                  else:
-                      return False
-            else:
-                return False
+        return False
             
     def __setitem__(self, key, value):
         city, date = key
@@ -87,7 +85,11 @@ class WeatherForecast:
             file.write(json.dumps(self.data))
     
     def __iter__(self):
-        return iter(self.data_from_file.items())
+        if not self.data_from_file :
+            print("Nothing saved")
+            return iter ({})
+        else:
+            return iter(self.data_from_file.items())
     
 user_city = input("Please enter the city for which you would like to know the forecast: ").capitalize()
 user_date = input("Please enter the date for which you would like to know the forecast: ")
