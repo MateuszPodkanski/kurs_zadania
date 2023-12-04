@@ -1,0 +1,4 @@
+ojoj,3,7,0
+kanapka,12,5,kubek
+pedzel,17,ojoj2,5
+plakat,czerwony,ojoj2,0
